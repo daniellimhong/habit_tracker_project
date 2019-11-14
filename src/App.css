@@ -1,22 +1,13 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 40vmin;
+.header{
+  height: 95vh;
+  background-image: linear-gradient(to left bottom
+  ,#27ae5fbe
+  ,#ecf0f1cb),url(./img/header.JPG);
+  background-size: cover;
+  background-position: top;
+  clip-path: polygon(100% 0, 100% 100%, 50% 90% , 0 100%, 0 0)
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #09d3ac;
+@media only screen and (max-width: 400px) {
+  
 }

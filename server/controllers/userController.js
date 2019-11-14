@@ -34,7 +34,7 @@ module.exports = {
     const db = req.app.get("db");
     const { username, password, email } = req.body;
 
-    db.select_user(email).then(([foundUser]) => {
+    db.select_user(username).then(([foundUser]) => {
       console.log(foundUser);
       if (foundUser) {
         res.status(409).send("Username already taken");
@@ -70,6 +70,7 @@ module.exports = {
     db.update_profile_picture([picture, user_id])
     .then( newPictureUrl => {
         res.status(200).send(newPictureUrl);
+        console.log(picture)
     })
   }
 };

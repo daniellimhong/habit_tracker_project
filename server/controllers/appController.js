@@ -22,6 +22,8 @@ module.exports = {
         db.update_habit_name([habit_name, habit_id])
         .then(updatedHabit => {
             res.status(200).send(updatedHabit);
+            console.log(habit_id);
+            console.log(habit_name)
         }).catch(err => console.log(err))
     },
 
@@ -51,9 +53,9 @@ module.exports = {
     deleteHabit: (req, res, next) => {
         const db = req.app.get("db");
         const { habit_id } = req.params;
-        const { user_id } = req.session.user;
+        // const { user_id } = req.session.user;
 
-        db.delete_habit([user_id, habit_id]).then( () => {
+        db.delete_habit([habit_id]).then( () => {
             res.status(200).send(console.log("Habit deleted"))
         });
     },
@@ -107,13 +109,33 @@ module.exports = {
     deleteReward: (req, res, next) => {
         const db = req.app.get("db");
         const { reward_id } = req.params;
-        const { user_id } = req.session.user;
+        // const { user_id } = req.session.user;
 
-        db.delete_reward([user_id, reward_id]).then( () => {
+        db.delete_reward([reward_id]).then( () => {
             res.status(200).send(console.log("Reward deleted"))
-        })
-    }
+        }).catch(err => console.log(err))
+    },
 
     //* Star controller (note: stars are in Users table)
+    updateUserStarsEarned: (req, res, next) => {
+        const db = req.app.get("db");
+        const { stars_earned } = req.body;
+        const { user_id } = req.session.user;
+
+        db.update_user_stars_earned([stars_earned, user_id]).then( () => {
+            res.status(200).send(console.log(`User #${user_id} star earned total: ${stars_earned}`))
+        }).catch(err => console.log(err))
+    },
+
+    updateUserStarsAvailable: (req, res, next) => {
+        const db = req.app.get("db");
+        const { stars_available } = req.body;
+        const { user_id } = req.session.user;
+
+        db.update_user_stars_avail([stars_available, user_id]).then( () => {
+            res.status(200).send(console.log(`User #${user_id} current stars available: ${stars_available}`))
+        }).catch(err => console.log(err))
+    }
+    
 
 }

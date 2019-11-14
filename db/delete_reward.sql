@@ -1,2 +1,2 @@
 delete from rewards
-where user_id = $1 and reward_id = $2; 
+where reward_id = $1; 

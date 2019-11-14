@@ -1,4 +1,5 @@
-drop table if exists profile;
+drop table if exists rewards;
+drop table if exists habits;
 drop table if exists users;
 
 create table users(
@@ -11,8 +12,8 @@ create table users(
     stars_available int default 0
 );
 
-insert into users(username, password, email)
-values('danielhong', 'test', 'danhong13@gmail.com');
+-- insert into users(username, password, email)
+-- values('danielhong', 'test', 'danhong13@gmail.com');
 
 create table habits(
     habit_id serial primary key,
@@ -29,3 +30,6 @@ create table rewards(
     description text not null,
     star_cost integer not null
 );
+
+select * from users join habits
+on (users.user_id = habits.user_id);

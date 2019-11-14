@@ -17,7 +17,9 @@ const {
     updateHabitName, 
     updateHabitDescription, 
     updateHabitWeeklyGoal, 
-    deleteHabit 
+    deleteHabit,
+    updateUserStarsEarned,
+    updateUserStarsAvailable
 } = require("./controllers/appController");
 
 const {
@@ -58,18 +60,21 @@ app.put("/api/updatePic", updateProfilePic);
 
 //* Habit Endpoints
 app.post("/api/newHabit", createHabit);
-app.put("/api/updateHabitName", updateHabitName);
-app.put("/api/updateHabitDescription", updateHabitDescription);
-app.put("/api/updateHabitWeeklyGoal", updateHabitWeeklyGoal);
-app.delete("/api/deleteHabit/:user_id/:habit_id", deleteHabit);
+app.put("/api/updateHabitName/:habit_id", updateHabitName);
+app.put("/api/updateHabitDescription/:habit_id", updateHabitDescription);
+app.put("/api/updateHabitWeeklyGoal/:habit_id", updateHabitWeeklyGoal);
+app.delete("/api/deleteHabit/:habit_id", deleteHabit);
 
 //* Reward Endpoints
 app.post("/api/newReward", createReward);
-app.put("/api/updateRewardName", updateRewardName);
-app.put("/api/updateRewardDescription", updateHabitDescription);
-app.put("/api/updateRewardCost", updateRewardCost);
-app.delete("/api/deleteReward/:user_id/:reward_id", deleteReward);
+app.put("/api/updateRewardName/:reward_id", updateRewardName);
+app.put("/api/updateRewardDescription/:reward_id", updateRewardDescription);
+app.put("/api/updateRewardCost/:reward_id", updateRewardCost);
+app.delete("/api/deleteReward/:reward_id", deleteReward);
 
+//* Star Endpoint
+app.put("/api/updateUserStarsEarned", updateUserStarsEarned);
+app.put("/api/updateUserStarsAvailable", updateUserStarsAvailable);
 
 
 app.listen(SERVER_PORT, () => 
